@@ -14,8 +14,7 @@ locals {
   admin_username = "lpsouza"
   public_key     = tls_private_key.ssh.public_key_openssh
   location       = "westus"
-  agent_count    = 1
-  dns_prefix     = "k8stest"
+  agent_count    = 3
 }
 
 resource "azurerm_resource_group" "rg" {
@@ -27,7 +26,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   name                = local.cluster_name
   resource_group_name = azurerm_resource_group.rg.name
   location            = local.location
-  dns_prefix          = local.dns_prefix
+  dns_prefix          = lower(local.cluster_name)
 
   linux_profile {
     admin_username = local.admin_username
