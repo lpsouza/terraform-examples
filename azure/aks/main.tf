@@ -18,7 +18,7 @@ locals {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "${local.cluster_name}RG"
+  name     = "${local.cluster_name}-RG"
   location = local.location
 }
 
