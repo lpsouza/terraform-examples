@@ -1,4 +1,6 @@
 .terraform/
 .terraform.tfstate*
+.terraform.lock.hcl
 terraform.tfstate*
+*.tfvars
 debug.log
