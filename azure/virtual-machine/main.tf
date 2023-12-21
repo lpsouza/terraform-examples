@@ -1,5 +1,13 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~>2.0"
+    }
+  }
+}
+
 provider "azurerm" {
-  version = "~>2.0"
   features {}
 }
 
@@ -129,5 +137,5 @@ resource "azurerm_linux_virtual_machine" "vm" {
 }
 
 output "tls_private_key" {
-  value = "${tls_private_key.ssh.private_key_pem}"
+  value = tls_private_key.ssh.private_key_pem
 }
