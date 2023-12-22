@@ -4,21 +4,15 @@ provider "aws" {
   secret_key = var.AWS_SECRET_KEY
 }
 
-locals {
-  vmname        = "my-vm"
-  instance_type = "t2.micro"
-  ami           = "ami-0c7217cdde317cfec" # Ubuntu 22.04
-}
-
 resource "aws_key_pair" "key_pair" {
-  key_name   = "${local.vmname}-key-pair"
+  key_name   = "${var.EC2_VM_NAME}-key-pair"
   public_key = var.AWS_KEY_PAIR
 }
 
 resource "aws_vpc" "my_vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
-    Name = "${local.vmname}-vpc"
+    Name = "${var.EC2_VM_NAME}-vpc"
   }
 }
 
@@ -26,7 +20,7 @@ resource "aws_subnet" "my_subnet" {
   vpc_id     = aws_vpc.my_vpc.id
   cidr_block = "10.0.1.0/24"
   tags = {
-    Name = "${local.vmname}-subnet"
+    Name = "${var.EC2_VM_NAME}-subnet"
   }
 }
 
@@ -34,7 +28,7 @@ resource "aws_internet_gateway" "my_internet_gateway" {
   vpc_id = aws_vpc.my_vpc.id
 
   tags = {
-    Name = "${local.vmname}-internet-gateway"
+    Name = "${var.EC2_VM_NAME}-internet-gateway"
   }
 }
 
@@ -48,7 +42,7 @@ resource "aws_default_route_table" "default_route_table" {
 }
 
 resource "aws_security_group" "my_security_group" {
-  name        = "${local.vmname}-security-group"
+  name        = "${var.EC2_VM_NAME}-security-group"
   description = "Security group for my instance"
   vpc_id      = aws_vpc.my_vpc.id
 
@@ -62,8 +56,8 @@ resource "aws_security_group" "my_security_group" {
 }
 
 resource "aws_instance" "my_instance" {
-  ami                         = local.ami
-  instance_type               = local.instance_type
+  ami                         = var.EC2_AMI
+  instance_type               = var.EC2_INSTANCE_TYPE
   subnet_id                   = aws_subnet.my_subnet.id
   key_name                    = aws_key_pair.key_pair.key_name
   associate_public_ip_address = true
@@ -74,7 +68,7 @@ resource "aws_instance" "my_instance" {
 
   user_data = <<-EOF
   #cloud-config
-  hostname: ${local.vmname}
+  hostname: ${var.EC2_VM_NAME}
   EOF
 
   # root_block_device {
@@ -82,7 +76,7 @@ resource "aws_instance" "my_instance" {
   # }
 
   tags = {
-    Name = local.vmname
+    Name = var.EC2_VM_NAME
   }
 }
 

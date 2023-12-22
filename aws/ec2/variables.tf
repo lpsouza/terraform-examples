@@ -21,3 +21,22 @@ variable "AWS_KEY_PAIR" {
   type        = string
   default     = "ssh-rsa AAAAB3NzaC1yc2EAAA... user@host"
 }
+
+variable "EC2_INSTANCE_TYPE" {
+  description = "EC2 instance type"
+  type        = string
+  default     = "t2.micro"
+
+}
+
+variable "EC2_AMI" {
+  description = "EC2 AMI"
+  type        = string
+  default     = "ami-0c7217cdde317cfec" # Ubuntu 22.04
+}
+
+variable "EC2_VM_NAME" {
+  description = "EC2 VM name"
+  type        = string
+  default     = "my-vm"
+}
