@@ -3,4 +3,5 @@
 .terraform.lock.hcl
 terraform.tfstate*
 *.tfvars
+credentials.json
 debug.log
