@@ -1,0 +1,17 @@
+#cloud-config
+
+# Enables ssh password authentication
+ssh_pwauth: true
+
+# Add users to the system.
+users:
+  - default
+  - name: johndoe
+    gecos: John Doe
+    primary_group: johndoe
+    groups: [users, admin]
+    shell: /bin/bash
+    ssh_authorized_keys: [REDACTED]
+    lock_passwd: false
+    passwd: [REDACTED]
+    sudo: ALL=(ALL) NOPASSWD:ALL
