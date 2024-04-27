@@ -1,5 +1,15 @@
 #cloud-config
 
+# Update the system
+pkg_update: true
+
+# Upgrade the system
+pkg_upgrade: true
+
+# Install linux-azure packages
+packages:
+  - linux-azure
+
 # Enables ssh password authentication
 ssh_pwauth: true
 
