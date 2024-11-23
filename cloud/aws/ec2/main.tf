@@ -64,11 +64,10 @@ resource "aws_security_group" "my_security_group" {
 }
 
 resource "aws_instance" "my_instance" {
-  ami                         = var.EC2_AMI
-  instance_type               = var.EC2_INSTANCE_TYPE
-  subnet_id                   = aws_subnet.my_subnet.id
-  key_name                    = aws_key_pair.key_pair.key_name
-  associate_public_ip_address = true
+  ami           = var.EC2_AMI
+  instance_type = var.EC2_INSTANCE_TYPE
+  subnet_id     = aws_subnet.my_subnet.id
+  key_name      = aws_key_pair.key_pair.key_name
 
   vpc_security_group_ids = [
     aws_security_group.my_security_group.id
@@ -86,6 +85,10 @@ resource "aws_instance" "my_instance" {
   tags = {
     Name = var.EC2_VM_NAME
   }
+}
+
+resource "aws_eip" "my_eip" {
+  instance = aws_instance.my_instance.id
 }
 
 output "public_ip" {
