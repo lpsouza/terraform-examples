@@ -26,7 +26,6 @@ variable "EC2_INSTANCE_TYPE" {
   description = "EC2 instance type"
   type        = string
   default     = "t2.micro"
-
 }
 
 variable "EC2_AMI" {

@@ -79,9 +79,9 @@ resource "aws_instance" "my_instance" {
   hostname: ${var.EC2_VM_NAME}
   EOF
 
-  # root_block_device {
-  #   volume_size = 50
-  # }
+  root_block_device {
+    volume_size = 50
+  }
 
   tags = {
     Name = var.EC2_VM_NAME
