@@ -1,0 +1,13 @@
+{
+  "files.exclude": {
+    "**/.terraform/": true,
+    "**/.terraform.tfstate*": true,
+    "**/.terraform.lock.hcl": true,
+    "**/terraform.tfstate*": true,
+    "**/*.tfvars": true,
+    "**/credentials.json": true,
+    "**/*.pem": true,
+    "**/debug.log": true,
+    "**/.infracost/": true,
+  }
+}
