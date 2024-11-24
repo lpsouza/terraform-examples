@@ -5,7 +5,8 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "my_bucket" {
-  bucket = var.S3_BUCKET_NAME
+  bucket        = var.S3_BUCKET_NAME
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "my_bucket_lifecycle" {
