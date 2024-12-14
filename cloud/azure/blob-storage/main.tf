@@ -4,15 +4,11 @@ provider "azurerm" {
 }
 
 resource "random_id" "randomId" {
-  keepers = {
-    resource_group = azurerm_resource_group.rg.name
-  }
-
-  byte_length = 8
+  byte_length = 4
 }
 
 resource "azurerm_resource_group" "my_resource_group" {
-  name     = "${var.STORAGE_ACCOUNT_NAME}-RG"
+  name     = "${var.STORAGE_ACCOUNT_NAME}-rg"
   location = var.LOCATION
 }
 
@@ -30,41 +26,20 @@ resource "azurerm_storage_container" "my_storage_container" {
   container_access_type = "private"
 }
 
-data "azurerm_storage_account_sas" "my_storage_container_sas" {
-  connection_string = azurerm_storage_account.my_storage_account.primary_connection_string
-  https_only        = true
+resource "azurerm_storage_management_policy" "example" {
+  storage_account_id = azurerm_storage_account.my_storage_account.id
 
-  resource_types {
-    object    = true
-    container = true
-    service   = false
+  rule {
+    name    = "move-to-cool-tier"
+    enabled = true
+    filters {
+      blob_types = ["blockBlob"]
+    }
+    actions {
+      base_blob {
+        tier_to_cool_after_days_since_creation_greater_than    = 30
+        tier_to_archive_after_days_since_creation_greater_than = 60
+      }
+    }
   }
-
-  services {
-    blob  = true
-    queue = false
-    table = false
-    file  = false
-  }
-
-  start  = "2021-01-01T00:00:00Z"
-  expiry = "2025-01-01T00:00:00Z"
-
-  permissions {
-    read    = true
-    write   = true
-    delete  = false
-    list    = false
-    add     = true
-    create  = true
-    update  = false
-    process = false
-    tag     = false
-    filter  = false
-  }
-}
-
-output "sas_url_query_string" {
-  value     = data.azurerm_storage_account_sas.my_storage_container_sas.sas
-  sensitive = true
 }
