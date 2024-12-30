@@ -19,5 +19,5 @@ variable "AWS_SECRET_KEY" {
 variable "S3_BUCKET_NAME" {
   description = "S3 bucket name"
   type        = string
-  default     = "my-bucket-example-123"
+  default     = "my-bucket-example"
 }

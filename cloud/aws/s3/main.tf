@@ -4,8 +4,12 @@ provider "aws" {
   secret_key = var.AWS_SECRET_KEY
 }
 
+resource "random_id" "bucket_id" {
+  byte_length = 4
+}
+
 resource "aws_s3_bucket" "my_bucket" {
-  bucket        = var.S3_BUCKET_NAME
+  bucket        = "${var.S3_BUCKET_NAME}-${random_id.bucket_id.hex}"
   force_destroy = true
 }
 
