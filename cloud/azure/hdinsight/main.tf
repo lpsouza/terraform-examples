@@ -21,6 +21,11 @@ resource "azurerm_storage_account" "hadoop" {
   account_kind             = "StorageV2"
 }
 
+resource "azurerm_storage_data_lake_gen2_filesystem" "hadoop" {
+  name               = "datalake-container"
+  storage_account_id = azurerm_storage_account.hadoop.id
+}
+
 resource "azurerm_storage_container" "hadoop" {
   name                  = "hadoop-container"
   storage_account_id    = azurerm_storage_account.hadoop.id
@@ -79,6 +84,11 @@ resource "azurerm_storage_account" "spark" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
   account_kind             = "StorageV2"
+}
+
+resource "azurerm_storage_data_lake_gen2_filesystem" "spark" {
+  name               = "datalake-container"
+  storage_account_id = azurerm_storage_account.spark.id
 }
 
 resource "azurerm_storage_container" "spark" {
