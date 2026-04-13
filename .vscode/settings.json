@@ -4,7 +4,7 @@
     "**/.terraform.tfstate*": true,
     "**/.terraform.lock.hcl": true,
     "**/terraform.tfstate*": true,
-    "**/*.tfvars": true,
+    "**/*.tfvars*": true,
     "**/credentials.json": true,
     "**/*.pem": true,
     "**/debug.log": true,
