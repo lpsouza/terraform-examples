@@ -25,7 +25,7 @@ variable "CLUSTER_NAME" {
 variable "NODE_TYPE" {
   description = "Type of node to use in the Redshift cluster"
   type        = string
-  default     = "dc2.large"
+  default     = "ra3.xlplus"
 }
 
 variable "NODE_COUNT" {
