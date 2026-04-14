@@ -7,7 +7,7 @@ variable "SUBSCRIPTION_ID" {
 variable "LOCATION" {
   description = "Azure location"
   type        = string
-  default     = "eastus"
+  default     = "westus2"
 }
 
 variable "WORKSPACE_NAME" {
