@@ -45,7 +45,7 @@ resource "aws_redshift_cluster" "my_cluster" {
   number_of_nodes                     = var.NODE_COUNT
   database_name                       = var.DBNAME
   skip_final_snapshot                 = true
-  automated_snapshot_retention_period = 0
+  automated_snapshot_retention_period = 1
 
   cluster_subnet_group_name = aws_redshift_subnet_group.my_subnet_group.name
 
