@@ -14,7 +14,21 @@ This directory contains various Terraform templates designed to demonstrate the 
 
 To use any of these examples, follow the steps below:
 
-### 1. Configuration
+### 1. Authentication
+
+Before configuring Terraform, you need your AWS credentials. If you don't have them:
+
+1. Sign in to the [AWS Management Console](https://console.aws.amazon.com/).
+2. Search for **IAM** in the top search bar and click on it.
+3. In the left sidebar, click on **Users**.
+4. Click on your username (or create a new user with `AdministratorAccess`).
+5. Click on the **Security credentials** tab.
+6. Scroll down to **Access keys** and click **Create access key**.
+7. Select **Command Line Interface (CLI)**, check the confirmation box, and click **Next**.
+8. (Optional) Give it a description and click **Create access key**.
+9. **Important:** Copy your **Access Key ID** and **Secret Access Key**. You won't be able to see the secret key again!
+
+### 2. Configuration
 
 Each project has a `variables.tf` file that contains the necessary parameters for deployment.
 
@@ -26,7 +40,7 @@ Each project has a `variables.tf` file that contains the necessary parameters fo
    - `AWS_REGION`: The target AWS region (e.g., `us-east-1`).
    - `AWS_KEY_PAIR`: Your public SSH key (for EC2/EKS/EMR).
 
-### 2. Deployment
+### 3. Deployment
 
 Once the variables are configured, run the standard Terraform workflow:
 
@@ -41,7 +55,7 @@ terraform plan
 terraform apply
 ```
 
-### 3. Cleanup
+### 4. Cleanup
 
 To avoid unexpected costs on your AWS account, ensure you destroy the resources after you are finished:
 

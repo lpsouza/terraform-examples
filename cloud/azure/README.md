@@ -13,7 +13,17 @@ This directory contains various Terraform templates designed to demonstrate the 
 
 To use any of these examples, follow the steps below:
 
-### 1. Configuration
+### 1. Authentication
+
+Before configuring Terraform, you must authenticate with your Azure account and find your Subscription ID:
+
+1. Install the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) if you haven't already.
+2. Open your terminal and run `az login`. A browser window will open for you to sign in.
+3. Once logged in, go to the [Azure Portal](https://portal.azure.com/).
+4. Search for **Subscriptions** in the top search bar.
+5. In the list, find the subscription you want to use and copy its **Subscription ID**.
+
+### 2. Configuration
 
 Each project has a `variables.tf` file that contains the necessary parameters for deployment.
 
@@ -24,7 +34,7 @@ Each project has a `variables.tf` file that contains the necessary parameters fo
    - `LOCATION`: The target Azure region (e.g., `eastus`).
    - `USERNAME` / `PASSWORD` / `PUBLIC_KEY`: Credentials for the resources being created.
 
-### 2. Deployment
+### 3. Deployment
 
 Once the variables are configured, run the standard Terraform workflow:
 
@@ -39,7 +49,7 @@ terraform plan
 terraform apply
 ```
 
-### 3. Cleanup
+### 4. Cleanup
 
 To avoid unexpected costs on your Azure account, ensure you destroy the resources after you are finished:
 

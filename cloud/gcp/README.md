@@ -14,15 +14,21 @@ To use any of these examples, follow the steps below:
 
 ### 1. Authentication
 
-Before running Terraform, you must authenticate with GCP and set up Application Default Credentials (ADC):
+Before running Terraform, you must authenticate with GCP, set up Application Default Credentials (ADC), and find your Project ID:
 
-```bash
-# Log in to your Google Account
-gcloud auth login
+1. Install the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install) if you haven't already.
+2. Open your terminal and log in:
+   ```bash
+   # Log in to your Google Account
+   gcloud auth login
 
-# Set up application default credentials for Terraform to use
-gcloud auth application-default login
-```
+   # Set up application default credentials for Terraform to use
+   gcloud auth application-default login
+   ```
+3. To find your **Project ID**:
+   - Go to the [GCP Console](https://console.cloud.google.com/).
+   - Click the project selector dropdown at the top of the page.
+   - The **ID** is listed next to your project name in the list.
 
 ### 2. Configuration
 
